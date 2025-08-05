@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm text-black rounded px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.btn-primary {
+  @apply bg-violet-500 text-white px-4 py-2 rounded  transition duration-300;
+}
