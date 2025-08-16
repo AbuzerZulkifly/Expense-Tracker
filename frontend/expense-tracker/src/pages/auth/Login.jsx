@@ -57,7 +57,7 @@ export const Login = () => {
           <button type="submit" className='btn-primary w-full'>Login</button>
 
           <p className=''>Dont Have an Account? {""}
-          <Link className="" to="/signup">
+          <Link className="font-medium text-primary" to="/signup">
            SignUp
           </Link>
           </p>
