@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from "react-router-dom"
-import AuthLayout from '../../components/layouts/authLayout.jsx'
 import Input from '../../components/inputs/Input.jsx'
 import { validateEmail } from '../../utils/helper.js'
 import ProfilePicSelector from '../../components/profilePicSelector/ProfilePicSelector.jsx'
@@ -35,11 +34,10 @@ export const Signup = () => {
     // Signup API Call
   }
   return (
-    <AuthLayout className="flex ">
-      <form className='flex justify-center ' onSubmit={handleSignup}>
-        <div className='w-[40%] text-center border-2 border-gray-400 p-2 rounded-2xl flex flex-col justify-center'>
+    <div className='flex flex-col gap-2 justify-center items-center h-screen'>
+      <form className='w-[40%] text-center border-2 border-gray-400 p-2 rounded-2xl' onSubmit={handleSignup}>
           <div className=' flex flex-col items-center gap-2 mb-2'>
-            <h1 className='text-2xl text-center'>Create an Account</h1>
+            <h1 className='text-2xl text-center text-primary'>Create an Account</h1>
             <p className='text-sm text-gray-500'>Please fill in the details below to create your account.</p>
             <ProfilePicSelector image={profilePic} setImage={setProfilePic} />
           </div>
@@ -71,11 +69,10 @@ export const Signup = () => {
                 <Link className="font-medium text-primary" to="/login">
                    Login
                 </Link>
-                  </p>
-        </div>
-      
+              </p>
+           
       </form>
-    </AuthLayout>
+    </div>
   )
 }
 export default Signup

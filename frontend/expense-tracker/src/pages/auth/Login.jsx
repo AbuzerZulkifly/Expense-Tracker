@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {Link, useNavigate} from "react-router-dom"
-import AuthLayout from '../../components/layouts/authLayout.jsx'
 import Input from '../../components/inputs/Input.jsx'
 import { validateEmail } from '../../utils/helper.js'
 
@@ -31,9 +30,12 @@ export const Login = () => {
   }
   
   return (
-    <AuthLayout>
-      <div className='w-[40%] pt-20'>
-        <h1 className='text-xl text-center'>Welcome Back</h1>
+   <div className='flex flex-col gap-2 justify-center items-center h-screen'>
+    <div>
+      <h1 className='text-4xl font-extrabold text-primary'>Finance Manager</h1>
+    </div>
+    <div className='w-[40%] border-2 border-gray-400 rounded-2xl p-3 text-center'>
+        <h1 className='text-2xl text-center text-primary '>Welcome Back</h1>
         <form onSubmit={handleLogin} action="">
         
           <Input 
@@ -63,7 +65,7 @@ export const Login = () => {
           </p>
         </form>
       </div>
-    </AuthLayout>
+</div>
   )
 }
 
