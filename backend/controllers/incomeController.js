@@ -6,7 +6,7 @@ exports.addIncome = async (req, res) => {
   const userId = req.user.id;
   
   try {
-    const { icon, source, amount, date } = req.body;
+    const { icon, source, amount, date, description } = req.body;
     // Validate required fields
     if(!source || !amount || !date) {
       return res.status(400).json({ message: "Source, amount, and date are required" });
@@ -17,6 +17,7 @@ exports.addIncome = async (req, res) => {
       source,
       amount,
       date: new Date(date), // Ensure date is stored as a Date object
+      description
     });
 
     await newIncome.save();
@@ -45,9 +46,10 @@ exports.downloadIncomeExcel = async (req, res) => {
 
     // prepare data for Excel
     const data = incomes.map(income => ({
-      Source: income.source,
-      Amount: income.amount,
       Date: income.date.toISOString().split('T')[0], // format date as YYYY-MM-DD
+      Source: income.source,
+      description: income.description, 
+      Amount: income.amount,
     }));
     // Create a new workbook and add the data
     const workBook = XLSX.utils.book_new();
