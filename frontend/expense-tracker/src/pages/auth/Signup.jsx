@@ -1,21 +1,30 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Input from '../../components/inputs/Input.jsx'
 import { validateEmail } from '../../utils/helper.js'
 import ProfilePicSelector from '../../components/profilePicSelector/ProfilePicSelector.jsx'
+import uploadImage from '../../utils/uploadImage.js'
+import { UserContext } from '../../contexts/userContext.jsx'
+import axiosInstance from '../../utils/axiosInstance.js'
+import { API_PATHS } from '../../utils/apiPath.js'
+
 
 export const Signup = () => {
-  const [profilePic, setProfilePic] = useState(null);
-  const [name, setName] = useState("");
+  const [profilePicture, setProfilePic] = useState(null);
+  const [fullName, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const {updateUser} = useContext(UserContext);
+  
+  
   const navigate = useNavigate()
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if(!name) {
+    let profilePic = "";
+    if(!fullName) {
       setError("Please Enter Your Name")
       return
     }
@@ -32,6 +41,38 @@ export const Signup = () => {
 
     setError("")
     // Signup API Call
+
+    if (profilePicture){
+      const imgUploadResponse = await uploadImage(profilePicture);
+      profilePic = imgUploadResponse.imgUrl || "";
+  }
+
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        fullName,
+        email,
+        password,
+        profilePic
+      });
+      const {token, user} = response.data;
+
+      if(token){
+        localStorage.setItem('token', token); // Store token in localStorage
+        updateUser(user); // Update user context
+        navigate('/home')
+      }
+
+    } catch (error) {
+      if(error.response && error.response.data.message){
+        setError(error.response.data.message);
+        
+        
+      } else {
+        setError("An error occurred while signing up. Please try again.");
+        
+        
+      }
+    }
   }
   return (
     <div className='flex flex-col gap-2 justify-center items-center h-screen'>
@@ -39,13 +80,13 @@ export const Signup = () => {
           <div className=' flex flex-col items-center gap-2 mb-2'>
             <h1 className='text-2xl text-center text-primary'>Create an Account</h1>
             <p className='text-sm text-gray-500'>Please fill in the details below to create your account.</p>
-            <ProfilePicSelector image={profilePic} setImage={setProfilePic} />
+            <ProfilePicSelector image={profilePicture} setImage={setProfilePic} />
           </div>
           <Input 
-            value={name}
+            value={fullName}
             onChange={({target}) => setName(target.value)}
             label="Enter Your Full Name"
-            placeholder="John Document"
+            placeholder="John Doe"
             type="text"
           />
           <Input 

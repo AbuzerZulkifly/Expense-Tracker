@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
   },
   // Set the filename for uploaded files (unique by using timestamp)
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname) // Unique filename
+    cb(null, `${Date.now()}-${file.originalname}`) // Unique filename
   },
 })
 

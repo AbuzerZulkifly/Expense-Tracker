@@ -11,9 +11,12 @@ import Signup from './pages/auth/Signup.jsx'
 import Home from './pages/dashboard/Home.jsx'
 import Expense from './pages/dashboard/Expense.jsx'
 import Income from './pages/dashboard/Income.jsx'
+import UserProvider from './contexts/userContext.jsx'
+import PrivateRoutes from './components/privateRoutes/PrivateRoutes.jsx'
 
 const App = () => {
   return (
+    <UserProvider>
     <div>
       <Router>
         <Routes>
@@ -26,6 +29,7 @@ const App = () => {
         </Routes>
       </Router>
     </div>
+    </UserProvider>
   )
 }
 export default App

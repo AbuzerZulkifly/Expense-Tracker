@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Input from '../../components/inputs/Input.jsx'
 import { validateEmail } from '../../utils/helper.js'
+import axiosInstance from '../../utils/axiosInstance.js'
+import { API_PATHS } from '../../utils/apiPath.js'
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/userContext.jsx';
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const {updateUser} = useContext(UserContext);
   const navigate = useNavigate()
   //handle login form submit
 
@@ -26,7 +31,25 @@ export const Login = () => {
 
     setError("")
     // Login API Call
-
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password
+      });
+      const {token, user} = response.data;
+      
+      if(token){
+      localStorage.setItem('token', token); // Store token in localStorage
+      updateUser(user); // Update user context
+      navigate('/home')
+    }
+    } catch (error) {
+      if(error.response && error.response.data.message){
+        setError(error.response.data.message);
+      } else {
+        setError("An error occurred while logging in. Please try again.");
+      }
+    }
   }
   
   return (
