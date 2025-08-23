@@ -8,15 +8,24 @@ date,
 amount,
 type,
 hideDeleteBtn}) => {
-  return (
-    <div className= "group relative font-bold flex flex-col border border-violet-800 gap-5 mt-2 p-2 rounded-xl hover:bg-gray-200/50">
 
-      <div className="flex font-bold justify-between gap-4 items-center">
-        <p>{type === "income" ? "Income" : "Expense"}</p>
+  const incomeExpenseStyle = (incomeBg, expenseBg, incomeText, expenseText) => {
+   return type === "income"
+     ? `bg-green-${incomeBg} text-green-${incomeText}`
+     : `bg-red-${expenseBg} text-red-${expenseText}`;
+  };
+  return (
+    <div className= "group relative font-bold flex flex-col  gap-3 mt-2 p-2 py-6 border-b-2 border-gray-500 hover:bg-gray-200/50">
+
+      <div className="flex font-semibold justify-between gap-4 items-center">
+        <div className='flex items-center gap-4'>
+        <p className={`${incomeExpenseStyle(400, 500)} px-2 py-1 rounded-lg `}>{type === "income" ? "Income" : "Expense"}</p>
+        <p className="bg-violet-400 px-2 py-1 rounded-lg">{title}</p>
+        </div>
         <p>{date}</p>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between gap-4">
       <div className='flex gap-5 items-center'>
         <div className="w-12 h-12 flex items-center justify-center text-xl text-gray-800 bg-gray-200 rounded-full">
           {icon ? (
@@ -27,7 +36,6 @@ hideDeleteBtn}) => {
         </div>
 
         <div className="">
-          <p className="">{title}</p>
           <p className="">{description}</p>
         </div>
       </div>
@@ -39,11 +47,11 @@ hideDeleteBtn}) => {
             </button>
           )}
 
-          <div className="flex items-center justify-between px-3 py-2 gap-2">
-            <h6 className="">
-              {type === "income" ? "+" : "-"} LKR{amount}
+          <div className={`flex items-center justify-end  py-2 gap-2 ${incomeExpenseStyle(0,0, 500, 500)}`}>
+            <h6 className={``}>
+              {type === "income" ? "+" : "-"} LKR {amount}
             </h6>
-            {type === "income" ? <LuTrendingUp /> : <LuTrendingDown />}
+            
           </div>
         </div>
       </div>

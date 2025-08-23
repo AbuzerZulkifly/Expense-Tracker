@@ -22,7 +22,7 @@ button:hover {
 }
 
 .card {
-  @apply bg-white rounded-2xl shadow-md p-6  border-gray-200
+  @apply bg-white rounded-2xl shadow-md p-3  border-gray-200
 }
 
 .btn-card {
