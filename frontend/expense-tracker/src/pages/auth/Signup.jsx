@@ -4,7 +4,7 @@ import Input from '../../components/inputs/Input.jsx'
 import { validateEmail } from '../../utils/helper.js'
 import ProfilePicSelector from '../../components/profilePicSelector/ProfilePicSelector.jsx'
 import uploadImage from '../../utils/uploadImage.js'
-import { UserContext } from '../../contexts/userContext.jsx'
+import { UserContext } from '../../contexts/UserContext.jsx'
 import axiosInstance from '../../utils/axiosInstance.js'
 import { API_PATHS } from '../../utils/apiPath.js'
 
@@ -76,7 +76,7 @@ export const Signup = () => {
   }
   return (
     <div className='flex flex-col gap-2 justify-center items-center h-screen'>
-      <form className='w-[40%] text-center border-2 border-gray-400 p-2 rounded-2xl' onSubmit={handleSignup}>
+      <form className='w-[60%] lg:w-[40%] text-center border-2 border-gray-400 p-2 rounded-2xl' onSubmit={handleSignup}>
           <div className=' flex flex-col items-center gap-2 mb-2'>
             <h1 className='text-2xl text-center text-primary'>Create an Account</h1>
             <p className='text-sm text-gray-500'>Please fill in the details below to create your account.</p>

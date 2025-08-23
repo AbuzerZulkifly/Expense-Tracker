@@ -53,12 +53,12 @@ export const Login = () => {
   }
   
   return (
-   <div className='flex flex-col gap-2 justify-center items-center h-screen'>
+   <div className='flex flex-col gap-2 justify-center items-center h-[15%]'>
     <div>
-      <h1 className='text-4xl font-extrabold text-primary'>Finance Manager</h1>
+      <h1 className='text-2xl font-extrabold text-primary'>Finance Manager</h1>
     </div>
-    <div className='w-[40%] border-2 border-gray-400 rounded-2xl p-3 text-center'>
-        <h1 className='text-2xl text-center text-primary '>Welcome Back</h1>
+    <div className='w-[70%] lg:w-[30%] border-2 border-gray-400 rounded-2xl p-3 text-center'>
+        <h1 className='text-xl text-center text-primary '>Welcome Back</h1>
         <form onSubmit={handleLogin} action="">
         
           <Input 
