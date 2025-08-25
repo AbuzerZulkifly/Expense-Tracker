@@ -49,7 +49,7 @@ export const Home = () => {
   return (
     <DashboardLayout activeMenu="Home">
       <div className="my-5 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 ">
           <InfoCard 
             icon={<IoMdCard />}
             label="Total Balance"
@@ -70,7 +70,7 @@ export const Home = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-2 sm:text-[0.7rem] md:gap-2 mt-6">
           <RecentTransaction 
             transactions={dashboardData?.lastTransactions }
             onSeeMore={() => navigate("/expense")}

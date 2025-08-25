@@ -9,11 +9,11 @@ const RecentTransaction = ({transactions, onSeeMore}) => {
       <div className="flex items-center justify-between">
         <h5 className='text-xl'>Recent Transactions</h5>
         <button className='btn-card' onClick={onSeeMore}>
-          See All Transactions <LuArrowRight className="text-base" />
+          See All <LuArrowRight className="text-end" />
         </button>
       </div>
 
-      <div className="mt-6 ">
+      <div className=" ">
         {transactions?.slice(0,5)?.map((item) => ( 
           <TransactionInfoCard
             key={item._id}
