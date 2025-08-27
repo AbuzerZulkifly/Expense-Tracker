@@ -9,6 +9,9 @@ import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../../utils/axiosInstance.js'
 import { API_PATHS } from '../../utils/apiPath.js'
 import RecentTransaction from '../../components/dashboard/RecentTransaction.jsx'
+import FinanceOverview from '../../components/dashboard/FinanceOverview.jsx'
+import ExpenseTransaction from '../../components/dashboard/ExpenseTransaction.jsx'
+import Last30DaysExpenses from '../../components/dashboard/Last30DaysExpenses.jsx'
 
 
 export const Home = () => {
@@ -49,7 +52,7 @@ export const Home = () => {
   return (
     <DashboardLayout activeMenu="Home">
       <div className="my-5 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 ">
+        <div className=" grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 ">
           <InfoCard 
             icon={<IoMdCard />}
             label="Total Balance"
@@ -75,6 +78,20 @@ export const Home = () => {
             transactions={dashboardData?.lastTransactions }
             onSeeMore={() => navigate("/expense")}
           />
+        <FinanceOverview
+          totalBalance={dashboardData?.totalBalance || 0}
+          totalIncome={dashboardData?.totalIncome || 0}
+          totalExpense={dashboardData?.totalExpense || 0}
+        />
+
+        <ExpenseTransaction 
+          transactions={dashboardData?.last30DaysExpense?.transactions || [] }
+          onSeeMore={() => navigate("/expense")}
+        />
+
+        <Last30DaysExpenses
+          data={dashboardData?.last30DaysExpense?.transactions || []}
+        />
         </div>
       </div>
     </DashboardLayout>
