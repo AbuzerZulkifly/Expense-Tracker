@@ -12,6 +12,7 @@ import Home from './pages/dashboard/Home.jsx'
 import Expense from './pages/dashboard/Expense.jsx'
 import Income from './pages/dashboard/Income.jsx'
 import UserProvider from './contexts/UserContext.jsx'
+//import Admin from './pages/admin/Admin.jsx'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/expense"  element={<Expense/>} />
           <Route path="/income" element={<Income/>} />
           <Route path="/home"  element={<Home />} />
+          {/* <Route path="/admin"  element={<Admin />} /> */}
         </Routes>
       </Router>
     </div>

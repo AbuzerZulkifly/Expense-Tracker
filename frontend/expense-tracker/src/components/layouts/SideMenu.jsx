@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { SIDE_MENU_DATA } from '../../utils/data.js';
+import { ADMIN_SIDE_MENU_DATA, SIDE_MENU_DATA } from '../../utils/data.js';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import CharAvatar from '../cards/CharAvatar.jsx';
@@ -39,7 +39,20 @@ const SideMenu = ({activeMenu}) => {
           {user?.fullName || ""}
         </h5>
     </div>
-    {SIDE_MENU_DATA.map((item, index) => (
+    {user?.isAdmin  ? (
+    ADMIN_SIDE_MENU_DATA.map((item, index) => (
+      <button
+      key={`menu_${index}`}
+      className={`w-full flex items-center gap-3 text-[1rem]}
+        ${activeMenu == item.title ? "text-white bg-violet-600": ""} py-3 px-6 rounded-lg mb-3`}
+        onClick={() => handleClick(item.path)}
+      >
+        <item.icon className='text-3xl' />
+         {item.title}
+      </button>
+    )))
+    :
+    (SIDE_MENU_DATA.map((item, index) => (
       <button
       key={`menu_${index}`}
       className={`w-full flex items-center gap-3 text-[1rem]
@@ -49,7 +62,8 @@ const SideMenu = ({activeMenu}) => {
         <item.icon className='text-3xl' />
          {item.title}
       </button>
-    ))}   
+    ))  )
+  }
   </div>
   
 }
