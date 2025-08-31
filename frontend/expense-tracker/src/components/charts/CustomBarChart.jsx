@@ -27,7 +27,7 @@ const CustomBarChart = ({data}) => {
             stroke="none"
           />
           <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
-
+          <Tooltip />
           <Bar
             dataKey="amount"
             fill="#FF8042"
@@ -35,7 +35,6 @@ const CustomBarChart = ({data}) => {
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={getBarColor(index)} />
-
             ))}
           </Bar>
         </BarChart>

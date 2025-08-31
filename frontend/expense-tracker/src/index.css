@@ -33,6 +33,10 @@ button:hover {
   @apply flex justify-end items-center gap-2 text-sm font-semibold text-gray-800 hover:text-violet-500 bg-gray-100 ps-4 pe-0.5 py-2 rounded-2xl border-gray-500 cursor-pointer 
 }
 
+.btn-add {
+  @apply flex gap-2 items-center px-2 text-sm font-semibold  hover:text-violet-500 bg-gray-100  py-1 rounded-lg border-gray-500 cursor-pointer 
+}
+
 @media (min-width: 768px) and (max-width: 1023px){
 .tablet-transactionInfoCard{
   @apply relative font-bold flex flex-col text-[12.5px] gap-2 mt-3 px-2 py-3 border-b-2 border-gray-500 hover:bg-gray-200/50 
