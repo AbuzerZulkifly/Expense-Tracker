@@ -58,7 +58,9 @@ exports.loginUser = async (req, res ) => {
     if (!user || !await user.comparePassword(password)) {
       return res.status(400).json({message: "The email or password is incorrect"});
     }
-
+    if(user.status !== "active") {
+      return res.status(403).json({message: "Your account has been deactivated. Please contact admin."});
+    }
     res.status(200).json({
       id: user._id,
       user,

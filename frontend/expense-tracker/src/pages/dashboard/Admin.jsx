@@ -3,10 +3,23 @@ import DashboardLayout from '../../components/layouts/DashboardLayout.jsx'
 import axiosInstance from '../../utils/axiosInstance.js'
 import { API_PATHS } from '../../utils/apiPath.js'
 import AdminList from '../../components/admin/AdminList.jsx'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from "react-router-dom";
+import { useUserAuth } from '../../hooks/useUserAuth.hook.jsx'
 const Admin = () => {
+
+  const navigate = useNavigate();
+  const {user} = useUserAuth();
+  if(!user || !user.isAdmin){
+    navigate("/home");
+  }
 
   const [userData, setUserData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [openUpdateAlert, setOpenUpdateAlert] = useState({
+      show: false,
+      data: null,
+    });
   
   const fetchUsers = async ()=> {
     setLoading(true);
@@ -23,6 +36,21 @@ const Admin = () => {
         setLoading(false);
     }
   }
+
+  const updateUserStatus = async (userId) => {
+    try {
+      await axiosInstance.patch(`${API_PATHS.ADMIN.UPDATE_USER_STATUS(userId)}`);
+      setOpenUpdateAlert({
+        show: false,
+        data: null,
+      });
+      toast.success("User Status Updated successfully");
+      fetchUsers();
+    } catch (error) {
+      console.error("Error updating user status expense:", error);
+      toast.error("Failed to Update user status. Please try again.");
+    }
+  }
   useEffect(() => {
     fetchUsers();
     return () => {}
@@ -30,7 +58,8 @@ const Admin = () => {
   return (
     <DashboardLayout activeMenu="Admin">
       <AdminList 
-        fetchUsers={userData}
+        users={userData}
+        onUpdate={updateUserStatus}
       />
     </DashboardLayout>
   )
