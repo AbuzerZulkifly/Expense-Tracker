@@ -38,11 +38,12 @@ export const Login = () => {
       });
       const {token, user} = response.data;
       
-      if(token){
-      localStorage.setItem('token', token); // Store token in localStorage
-      updateUser(user); // Update user context
-      navigate('/home')
-    }
+   if (token) {
+  localStorage.setItem('token', token);          // keep token for API requests
+  localStorage.setItem('user', JSON.stringify(user)); // ✅ persist user
+  updateUser(user); 
+  navigate('/home');
+}
     } catch (error) {
       if(error.response && error.response.data.message){
         setError(error.response.data.message);
@@ -55,7 +56,7 @@ export const Login = () => {
   return (
    <div className='flex flex-col gap-2 justify-center items-center h-[15%]'>
     <div>
-      <h1 className='text-2xl font-extrabold text-primary'>Finance Manager</h1>
+      <h1 className='text-2xl font-extrabold text-primary'>Easy Finance Manager</h1>
     </div>
     <div className='w-[70%] lg:w-[30%] border-2 border-gray-400 rounded-2xl p-3 text-center'>
         <h1 className='text-xl text-center text-primary '>Welcome Back</h1>

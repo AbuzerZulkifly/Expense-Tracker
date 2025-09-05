@@ -23,7 +23,7 @@ const RecentIncomeWithChart = ({data, totalIncome}) => {
   return (
     <div className="card col-span-1">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">Income for the last 60 days</h5>
+        <h5 className="text-lg font-bold">Income for the last 60 days</h5>
       </div>
       <CustomPieChart
         data={chartData}

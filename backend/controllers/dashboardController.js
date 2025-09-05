@@ -45,13 +45,13 @@ exports.getDashboardData = async (req, res) => {
     // Fetch last 10 income and expense transactions
     const lastTransactions = [
       ...(await Income.find({ userId }).sort({ date: -1 }).limit(10)).map(
-        (transaction) => ({          ...transaction.toObject(),
+        (transaction) => ({...transaction.toObject(),
           ...transaction.toObject(),
           type: 'income',})
 
       ),
       ...(await Expense.find({ userId }).sort({ date: -1 }).limit(10)).map(
-        (transaction) => ({          ...transaction.toObject(),
+        (transaction) => ({...transaction.toObject(),
           ...transaction.toObject(),
           type: 'expense',})
       )

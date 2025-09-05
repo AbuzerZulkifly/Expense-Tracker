@@ -3,8 +3,10 @@ import { ADMIN_SIDE_MENU_DATA, SIDE_MENU_DATA } from '../../utils/data.js';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import CharAvatar from '../cards/CharAvatar.jsx';
+import {useUserAuth} from '../../hooks/useUserAuth.hook.jsx';
 
 const SideMenu = ({activeMenu}) => {
+   useUserAuth();
   const {user, clearUser} = useContext(UserContext);
   const navigate = useNavigate();
   

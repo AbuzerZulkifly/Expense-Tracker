@@ -29,7 +29,7 @@ const CustomBarChart = ({data}) => {
           <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
           <Tooltip />
           <Bar
-            dataKey="amount"
+            dataKey="Amount"
             fill="#FF8042"
             radius={[10, 10, 0, 0]}
           >

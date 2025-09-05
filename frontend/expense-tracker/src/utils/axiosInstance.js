@@ -30,8 +30,9 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     if (error.response){
+      if (error.response.status === 401){
       window.location.href = '/login'; // Redirect to login on unauthorized access
-    } 
+     }
      else if (error.response.status === 500) {
       // Handle unauthorized access, e.g., redirect to login
       console.error('Unauthorized access - redirecting to login');
@@ -42,6 +43,7 @@ axiosInstance.interceptors.response.use(
     }
     return Promise.reject(error);
   }
+}
 );
 
 export default axiosInstance;

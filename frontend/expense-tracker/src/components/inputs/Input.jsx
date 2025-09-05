@@ -9,7 +9,7 @@ const Input = ({value, onChange, placeholder, label, type}) => {
   }
   return (
     <div>
-      <label className="block text-lg font-medium text-gray-700 mb-2">{label}</label>
+      <label className="block md:text-lg text-sm font-medium text-gray-700 mb-2">{label}</label>
       <div className='input-box'>
       <input 
       /*If the type prop is "password":

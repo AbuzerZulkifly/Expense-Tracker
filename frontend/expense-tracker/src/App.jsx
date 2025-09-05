@@ -5,13 +5,14 @@ Route,
 Routes,
 Navigate
 } from 'react-router-dom'
-
+import { Toaster } from 'react-hot-toast'
 import Login from './pages/auth/Login.jsx'
 import Signup from './pages/auth/Signup.jsx'
 import Home from './pages/dashboard/Home.jsx'
 import Expense from './pages/dashboard/Expense.jsx'
 import Income from './pages/dashboard/Income.jsx'
 import UserProvider from './contexts/UserContext.jsx'
+import Admin from './pages/dashboard/Admin.jsx'
 //import Admin from './pages/admin/Admin.jsx'
 
 const App = () => {
@@ -24,12 +25,25 @@ const App = () => {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup"  element={<Signup/>} />
           <Route path="/expense"  element={<Expense/>} />
+          <Route path="/admin"  element={<Admin/>} />
           <Route path="/income" element={<Income/>} />
           <Route path="/home"  element={<Home />} />
           {/* <Route path="/admin"  element={<Admin />} /> */}
         </Routes>
       </Router>
     </div>
+    <Toaster 
+      toastOptions={{
+        className: '',
+        style: {
+          border: '1px solid #713200',
+          padding: '10px',
+          fontSize: '13px',
+          color: '#fff',
+          backgroundColor: '#713200',
+        },
+      }}
+    />
     </UserProvider>
   )
 }

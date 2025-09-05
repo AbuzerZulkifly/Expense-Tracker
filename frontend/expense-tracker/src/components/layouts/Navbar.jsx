@@ -14,7 +14,7 @@ const Navbar = ({activeMenu}) => {
       {openSideMenu ? (<HiOutlineX className='text-2xl' />) : (<HiOutlineMenu className='text-2xl' />)}
     </button>
 
-      <h2 className='text-2xl text-primary font-medium text-black'>Finance Manager</h2>
+      <h2 className='text-xl text-primary font-semibold text-black'>Easy Finance Manager</h2>
       
       {openSideMenu && (
         <div className='fixed top-[61px] -ml-4 bg-white'>
